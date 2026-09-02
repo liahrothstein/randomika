@@ -23,6 +23,7 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  pluginReact.configs.flat['jsx-runtime'],
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
@@ -30,7 +31,6 @@ export default [
     rules: {
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-      'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
     },
   },
