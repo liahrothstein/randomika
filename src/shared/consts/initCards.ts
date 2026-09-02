@@ -46,7 +46,6 @@ import modifier26 from '../assets/cards/modifiers/26.png';
 import modifier27 from '../assets/cards/modifiers/27.png';
 import modifier28 from '../assets/cards/modifiers/28.png';
 import modifier29 from '../assets/cards/modifiers/29.png';
-
 import type { Card } from '../types/card';
 
 export const initExerciseCards: Card[] = [

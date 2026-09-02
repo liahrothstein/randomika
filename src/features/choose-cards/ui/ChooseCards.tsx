@@ -1,12 +1,23 @@
 import { Button } from '@components/index';
+import { initExerciseCards, initModifierCards } from '@constants/initCards';
+import { Card } from '@entities/index';
+
+import plus from '../../../shared/assets/icons/plus.webp';
 import { randomCardArray } from '../model/choose-cards';
-import { initExerciseCards } from '@constants/initCards';
 
 export function ChooseCards() {
-  console.log(randomCardArray(initExerciseCards));
+  const randomExerciseCards = randomCardArray(initExerciseCards);
+  const randomModifierCards = randomCardArray(initModifierCards);
 
   return (
     <div>
+      {randomExerciseCards.map((card) => (
+        <Card key={card.id} image={card.image} />
+      ))}
+      <img src={plus} alt="" />
+      {randomModifierCards.map((card) => (
+        <Card key={card.id} image={card.image} />
+      ))}
       <Button text="Выбрать испытание" />
     </div>
   );
