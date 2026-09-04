@@ -1,0 +1,89 @@
+$card-height: 140px;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.slotWindow {
+  position: relative;
+  height: $card-height * 3;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  transform: translateZ(0);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: $card-height;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.8), transparent);
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(15, 15, 15, 0.8), transparent);
+  }
+}
+
+.activeFrame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: $card-height;
+  border: 3px solid #ffcc00;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.tape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: $card-height;
+  will-change: transform, filter;
+
+  &.spinning {
+    transition: transform 6s cubic-bezier(0.1, 0.9, 0.15, 1);
+    filter: blur(1px);
+  }
+}
+
+.cardWrapper {
+  height: $card-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.85);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  width: 100%;
+  min-height: $card-height;
+  max-height: $card-height;
+  flex-shrink: 0;
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
