@@ -1,7 +1,7 @@
-import type { Card } from '../../../shared/types/card';
+import type { CardType } from '../../../shared/types/card';
 
-export function randomCardArray(cards: Card[], minLength = 19): Card[] {
-  let result: Card[] = [];
+export function randomCardArray(cards: CardType[], minLength = 19): CardType[] {
+  let result: CardType[] = [];
 
   while (result.length < minLength) {
     const shuffled = [...cards].sort(() => Math.random() - 0.5);
@@ -13,17 +13,17 @@ export function randomCardArray(cards: Card[], minLength = 19): Card[] {
 
 export function handleSpin(
   isSpinning: boolean,
-  initExerciseCards: Card[],
-  initModifierCards: Card[],
+  initExerciseCards: CardType[],
+  initModifierCards: CardType[],
   setExerciseState: (
     value: React.SetStateAction<{
-      tape: Card[];
+      tape: CardType[];
       targetIdx: number;
     }>,
   ) => void,
   setModifierState: (
     value: React.SetStateAction<{
-      tape: Card[];
+      tape: CardType[];
       targetIdx: number;
     }>,
   ) => void,

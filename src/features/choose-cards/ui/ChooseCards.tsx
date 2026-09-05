@@ -3,14 +3,18 @@ import { initExerciseCards, initModifierCards } from '@constants/initCards';
 import { Card } from '@entities/index';
 import { useState } from 'react';
 
+import lever1 from '../../../shared/assets/icons/lever1.png';
+import lever2 from '../../../shared/assets/icons/lever2.png';
 import plus from '../../../shared/assets/icons/plus.webp';
+import type { CardType } from '../../../shared/types/card';
 import { handleSpin, randomCardArray } from '../model/choose-cards';
 import styles from './ChooseCards.module.scss';
 
-const CARD_HEIGHT = 140;
+const CARD_HEIGHT = 160;
 
 export function ChooseCards() {
   const [isSpinning, setIsSpinning] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<CardType | null>(null);
 
   const [exerciseState, setExerciseState] = useState(() => {
     const tape = randomCardArray(initExerciseCards);
@@ -32,14 +36,22 @@ export function ChooseCards() {
             transform: `translateY(-${exerciseState.targetIdx * CARD_HEIGHT}px)`,
           }}
         >
-          {exerciseState.tape.map((card, idx) => (
-            <div
-              key={`${card.id}-${idx}`}
-              className={`${styles.cardWrapper} ${idx === exerciseState.targetIdx && !isSpinning ? styles.active : ''}`}
-            >
-              <Card image={card.image} />
-            </div>
-          ))}
+          {exerciseState.tape.map((card, idx) => {
+            const isActive = idx === exerciseState.targetIdx && !isSpinning;
+
+            return (
+              <div
+                key={`${card.id}-${idx}`}
+                className={`${styles.cardWrapper} ${idx === exerciseState.targetIdx && !isSpinning ? styles.active : ''}`}
+              >
+                <Card
+                  image={card.image}
+                  isActive={isActive}
+                  onClick={() => setSelectedCard(card)}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -54,19 +66,28 @@ export function ChooseCards() {
             transitionDelay: isSpinning ? '300ms' : '0ms',
           }}
         >
-          {modifierState.tape.map((card, idx) => (
-            <div
-              key={`${card.id}-${idx}`}
-              className={`${styles.cardWrapper} ${idx === modifierState.targetIdx && !isSpinning ? styles.active : ''}`}
-            >
-              <Card image={card.image} />
-            </div>
-          ))}
+          {modifierState.tape.map((card, idx) => {
+            const isActive = idx === modifierState.targetIdx && !isSpinning;
+
+            return (
+              <div
+                key={`${card.id}-${idx}`}
+                className={`${styles.cardWrapper} ${idx === modifierState.targetIdx && !isSpinning ? styles.active : ''}`}
+              >
+                <Card
+                  image={card.image}
+                  isActive={isActive}
+                  onClick={() => setSelectedCard(card)}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
 
       <Button
-        text="Выбрать испытание"
+        className={styles.spin}
+        image={!isSpinning ? lever1 : lever2}
         onClick={() =>
           handleSpin(
             isSpinning,
@@ -79,6 +100,21 @@ export function ChooseCards() {
         }
         disabled={isSpinning}
       />
+
+      {selectedCard && (
+        <div className={styles.modalBackdrop} onClick={() => setSelectedCard(null)}>
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <button className={styles.closeBtn} onClick={() => setSelectedCard(null)}>
+              ✕
+            </button>
+            <img
+              src={selectedCard.image}
+              alt="Карточка полноэкранно"
+              className={styles.modalImage}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

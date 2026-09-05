@@ -46,9 +46,9 @@ import modifier26 from '../assets/cards/modifiers/26.png';
 import modifier27 from '../assets/cards/modifiers/27.png';
 import modifier28 from '../assets/cards/modifiers/28.png';
 import modifier29 from '../assets/cards/modifiers/29.png';
-import type { Card } from '../types/card';
+import type { CardType } from '../types/card';
 
-export const initExerciseCards: Card[] = [
+export const initExerciseCards: CardType[] = [
   { id: 1, image: armAbduction },
   { id: 2, image: armsBending },
   { id: 3, image: ballThrowing },
@@ -70,7 +70,7 @@ export const initExerciseCards: Card[] = [
   { id: 19, image: stepping },
 ];
 
-export const initModifierCards: Card[] = [
+export const initModifierCards: CardType[] = [
   { id: 1, image: modifier1 },
   { id: 2, image: modifier2 },
   { id: 3, image: modifier3 },

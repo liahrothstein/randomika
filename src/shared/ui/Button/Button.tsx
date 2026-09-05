@@ -3,11 +3,12 @@ interface ButtonProps {
   image?: string;
   onClick: () => void;
   disabled: boolean;
+  className?: string;
 }
 
-export function Button({ text, image, onClick, disabled }: ButtonProps) {
+export function Button({ text, image, onClick, disabled, className }: ButtonProps) {
   return (
-    <button onClick={() => onClick()} disabled={disabled}>
+    <button className={className} onClick={() => onClick()} disabled={disabled}>
       {text}
       <img src={image} />
     </button>
