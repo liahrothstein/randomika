@@ -1,0 +1,261 @@
+$card-height: 160px;
+$card-height-mobile: 110px;
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto;
+
+  .plusIcon {
+    width: 200px;
+  }
+}
+
+.slotWindow {
+  position: relative;
+  height: $card-height * 3;
+  width: 200px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  transform: translateZ(0);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: $card-height;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(15, 15, 15, 0.8), transparent);
+  }
+
+  &::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(15, 15, 15, 0.8), transparent);
+  }
+}
+
+.activeFrame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: $card-height;
+  border: 3px solid #ffcc00;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.4);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tape {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: $card-height;
+  will-change: transform, filter;
+
+  &.spinning {
+    transition: transform 6s cubic-bezier(0.1, 0.9, 0.15, 1);
+    filter: blur(1px);
+  }
+}
+
+.cardWrapper {
+  height: $card-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  opacity: 0.5;
+  transform: scale(0.85);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  width: 100%;
+  min-height: $card-height;
+  max-height: $card-height;
+  flex-shrink: 0;
+
+  &.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 90vw;
+  max-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: scaleUp 0.25s ease-out;
+}
+
+.modalImage {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.closeBtn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.spin {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  img {
+    width: 160px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  $card-height-mobile: 110px;
+
+  .container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+
+    .plusIcon {
+      width: 28px;
+      flex-shrink: 0;
+    }
+  }
+
+  .slotWindow {
+    width: 125px;
+    height: $card-height-mobile * 3;
+    flex-shrink: 0;
+
+    &::before,
+    &::after {
+      height: $card-height-mobile;
+    }
+  }
+
+  .activeFrame {
+    height: $card-height-mobile;
+  }
+
+  .tape {
+    padding-top: $card-height-mobile;
+  }
+
+  .cardWrapper {
+    height: $card-height-mobile;
+    min-height: $card-height-mobile;
+    max-height: $card-height-mobile;
+  }
+
+  .spin {
+    margin-top: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 70px;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  $card-height-small: 95px;
+
+  .container {
+    gap: 4px;
+
+    .plusIcon {
+      width: 22px;
+    }
+  }
+
+  .slotWindow {
+    width: 105px;
+    height: $card-height-small * 3;
+  }
+
+  .activeFrame,
+  .cardWrapper {
+    height: $card-height-small;
+    min-height: $card-height-small;
+    max-height: $card-height-small;
+  }
+
+  .tape {
+    padding-top: $card-height-small;
+  }
+
+  .spin img {
+    width: 50px;
+  }
+}
