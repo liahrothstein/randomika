@@ -50,3 +50,10 @@ export function handleSpin(
     setIsSpinning(false);
   }, 6500);
 }
+
+export function getCardHeight(): 110 | 160 | 95 {
+  if (typeof window === 'undefined') return 160;
+  if (window.innerWidth <= 380) return 95;
+  if (window.innerWidth <= 768) return 110;
+  return 160;
+}

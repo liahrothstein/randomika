@@ -1,11 +1,18 @@
 import { ChooseCards } from '@features/index';
 
+import styles from './MainPage.module.scss';
+
 export function MainPage() {
   return (
-    <div>
-      <h1>Рандомика</h1>
-      <h2>Не выбирай — крути и делай!</h2>
-      <ChooseCards />
-    </div>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>РАНДОМИКА</h1>
+        <h2 className={styles.subtitle}>Не выбирай — крути и делай!</h2>
+      </header>
+
+      <section className={styles.content}>
+        <ChooseCards />
+      </section>
+    </main>
   );
 }

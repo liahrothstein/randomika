@@ -7,10 +7,10 @@ import lever1 from '../../../shared/assets/icons/lever1.png';
 import lever2 from '../../../shared/assets/icons/lever2.png';
 import plus from '../../../shared/assets/icons/plus.webp';
 import type { CardType } from '../../../shared/types/card';
-import { handleSpin, randomCardArray } from '../model/choose-cards';
+import { getCardHeight, handleSpin, randomCardArray } from '../model/choose-cards';
 import styles from './ChooseCards.module.scss';
 
-const CARD_HEIGHT = 160;
+const CARD_HEIGHT = getCardHeight();
 
 export function ChooseCards() {
   const [isSpinning, setIsSpinning] = useState(false);
