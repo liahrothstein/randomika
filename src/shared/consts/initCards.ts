@@ -46,6 +46,19 @@ import modifier26 from '../assets/cards/modifiers/26.png';
 import modifier27 from '../assets/cards/modifiers/27.png';
 import modifier28 from '../assets/cards/modifiers/28.png';
 import modifier29 from '../assets/cards/modifiers/29.png';
+import modifier30 from '../assets/cards/modifiers/30.png';
+import modifier31 from '../assets/cards/modifiers/31.png';
+import modifier32 from '../assets/cards/modifiers/32.png';
+import modifier33 from '../assets/cards/modifiers/33.png';
+import modifier34 from '../assets/cards/modifiers/34.png';
+import modifier35 from '../assets/cards/modifiers/35.png';
+import modifier37 from '../assets/cards/modifiers/37.png';
+import modifier38 from '../assets/cards/modifiers/38.png';
+import modifier39 from '../assets/cards/modifiers/39.png';
+import modifier40 from '../assets/cards/modifiers/40.png';
+import modifier41 from '../assets/cards/modifiers/41.png';
+import modifier42 from '../assets/cards/modifiers/42.png';
+import modifier43 from '../assets/cards/modifiers/43.png';
 import type { CardType } from '../types/card';
 
 export const initExerciseCards: CardType[] = [
@@ -100,4 +113,17 @@ export const initModifierCards: CardType[] = [
   { id: 27, image: modifier27 },
   { id: 28, image: modifier28 },
   { id: 29, image: modifier29 },
+  { id: 30, image: modifier30 },
+  { id: 31, image: modifier31 },
+  { id: 32, image: modifier32 },
+  { id: 33, image: modifier33 },
+  { id: 34, image: modifier34 },
+  { id: 35, image: modifier35 },
+  { id: 36, image: modifier37 },
+  { id: 37, image: modifier38 },
+  { id: 38, image: modifier39 },
+  { id: 39, image: modifier40 },
+  { id: 40, image: modifier41 },
+  { id: 41, image: modifier42 },
+  { id: 42, image: modifier43 },
 ];
